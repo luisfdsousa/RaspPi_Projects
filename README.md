@@ -9,3 +9,4 @@ This repository intends to provide a guide to develop Raspberry Pi projects. The
 - Markdown online editor <https://stackedit.io/> and <https://guides.github.com/features/mastering-markdown/>
 - Linux commands examples <http://www.linux-commands-examples.com/>
 - Python tutorial <https://python.swaroopch.com/>
+- Git references: <https://guides.github.com/activities/hello-world/>, <https://happygitwithr.com/>, and <https://try.github.io/>
