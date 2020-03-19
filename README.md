@@ -1,3 +1,10 @@
+---
+title: "Raspberry Pi Projects"
+author: Luís Sousa
+date: "03/18/2020"
+output: html_document
+---
+
 # About this Repository
 
 This repository intends to provide a guide to develop Raspberry Pi projects. The approach is to guide new Pi users through the setup and end-to-end project development using **bash**, **python**, **C/C++** and **R**.
