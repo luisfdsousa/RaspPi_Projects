@@ -1,0 +1,26 @@
+# WARNING DO NOT RUN THIS SCRIPT
+
+# This file contains bash commands of interest to use in 
+# the Raspberry PI / Ubuntu environment
+
+# Access global configuration menu Raspberry PI
+sudo raspi-config
+
+# Basic Git bash commands
+git add file_name
+git commit -m "comment"
+git push 
+
+git clone <url>
+git pull
+git fetch + git merge
+
+git status
+git log
+
+cd FOLDER
+git init
+git add file_name
+git commit -m "comment"
+git remote add origin "<github_url>"
+git push
