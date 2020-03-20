@@ -4,23 +4,42 @@
 # the Raspberry PI / Ubuntu environment
 
 # Access global configuration menu Raspberry PI
-sudo raspi-config
+	sudo raspi-config
 
 # Basic Git bash commands
-git add file_name
-git commit -m "comment"
-git push 
+	git add file_name
+	git commit -m "comment"
+	git push 
 
-git clone <url>
-git pull
-git fetch + git merge
+	git clone <url>
+	git pull
+	git fetch + git merge
 
-git status
-git log
+	git status
+	git log
 
-cd FOLDER
-git init
-git add file_name
-git commit -m "comment"
-git remote add origin "<github_url>"
-git push
+	cd FOLDER
+	git init
+	git add file_name
+	git commit -m "comment"
+	git remote add origin "<github_url>"
+	git push
+
+# Setting up / Running Wiringpi
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install wiringpi
+
+	gpio -v
+	gpio readall
+
+# How to create a symbolic links of a file or directory
+# E.g. Set Python3 as default Python actuators. please follow the steps below.
+	#1. Enter directory /usr/bin
+	cd /usr/bin
+	#2. Delete the old python link.
+	sudo rm python
+	#3. Creat new python links to python3.
+	sudo ln -s python3 python
+	#4. Execute python to check whether the link succeeds.
+	python
