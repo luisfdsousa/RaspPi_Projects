@@ -18,20 +18,26 @@ def setup(led_pin):
 def loop(led_pin, init_frequency, default_sleep):
     print('Start dimming the LED attached to pin #%d' % led_pin)
     duty_cycle = 0.0
-    step = 0.1
+    step = 0.2
     led = GPIO.PWM(led_pin, init_frequency)
     led.start(duty_cycle)                            # Start with 0% duty-cycle
     while True:
         duty_cycle += step
+
+        if duty_cycle > 100.0:
+            step = -step
+            duty_cycle = 100.0
+            print('>>> Changed dimming direction: lighting down')
+        elif duty_cycle < 0.0:
+            step = -step
+            duty_cycle = 0.0
+            print('>>> Changed dimming direction: lighting up')
+
+        if 0.0 == duty_cycle % 10:
+            print('>>> duty_cycle = %f, direction: %f' % (duty_cycle, step))
+
         led.ChangeDutyCycle(duty_cycle)   # change the duty cycle to 90%
         time.sleep(default_sleep)           # Wait for sleep_time
-
-        if duty_cycle % 10 == 0:
-            print('>>> duty_cycle = %d, direction: %d' % (duty_cycle, step))
-
-        if duty_cycle == 100 or duty_cycle == 0:
-            print('>>> Changed dimming direction: %d' % step)
-            step = -step
     #led.ChangeFrequency(100)       # change the frequency to 100 Hz (floats also work)
     #led.stop()  # Stop PWM
 
@@ -42,7 +48,7 @@ def destroy():
 if __name__ == '__main__':    # Program entrance
     led_pin = 11             # define ledPin
     init_frequency = 1000     # 1000Hz
-    default_sleep = 0.1     # sleep time between duty_cycle changes in ms
+    default_sleep = 0.01     # sleep time between duty_cycle changes in ms
 
     # Print total number of arguments
     num_args = len(sys.argv)
