@@ -15,7 +15,7 @@ def setup(led_pin):
     GPIO.output(led_pin, GPIO.LOW)           # make ledPin output LOW level
     print ('Activated pin #%d : Output mode' % led_pin)
 
-def loop(led_pin, init_frequency, default_sleep):
+def loop_linear_dimming(led_pin, init_frequency, default_sleep):
     print('Start dimming the LED attached to pin #%d' % led_pin)
     duty_cycle = 0.0
     step = 0.2
@@ -41,6 +41,36 @@ def loop(led_pin, init_frequency, default_sleep):
     #led.ChangeFrequency(100)       # change the frequency to 100 Hz (floats also work)
     #led.stop()  # Stop PWM
 
+
+def loop_exp_dimming(led_pin, init_frequency, default_sleep):
+    print('Start dimming the LED attached to pin #%d' % led_pin)
+    duty_cycle = 0.0
+    step = 1.2
+    led = GPIO.PWM(led_pin, init_frequency)
+    led.start(duty_cycle)  # Start with 0% duty-cycle
+    index = 0
+    direction = -1
+    while True:
+        duty_cycle = pow(step, index)
+
+        if duty_cycle > 100.0:
+            direction = -direction
+            duty_cycle = 100.0
+            print('>>> Changed dimming direction: lighting down')
+        elif duty_cycle == 1.0:
+            direction = -direction
+            # duty_cycle = 0.0
+            print('>>> Changed dimming direction: lighting up')
+
+        index += direction
+
+        # if 0.0 == index % (2):
+        print('>>> duty_cycle = %f, direction: %f' % (duty_cycle, direction))
+
+        led.ChangeDutyCycle(duty_cycle)  # change the duty cycle to 90%
+        time.sleep(default_sleep)  # Wait for sleep_time
+    # led.ChangeFrequency(100)       # change the frequency to 100 Hz (floats also work)
+    # led.stop()  # Stop PWM
 
 def destroy():
     GPIO.cleanup()                      # Release all GPIO
@@ -84,11 +114,8 @@ if __name__ == '__main__':    # Program entrance
                 else:
                     print('Error setting the pin number: argument is not an integer')
 
-
-    print ('Program is starting ... \n')
     setup(led_pin)
     try:
-        loop(led_pin, init_frequency, default_sleep)
+        loop_linear_dimming(led_pin, init_frequency, default_sleep)
     except KeyboardInterrupt:   # Press ctrl-c to end the program.
         destroy()
-
