@@ -18,7 +18,7 @@ def setup(led_pin):
 def loop_linear_dimming(led_pin, init_frequency, default_sleep):
     print('Start dimming the LED attached to pin #%d' % led_pin)
     duty_cycle = 0.0
-    step = 0.2
+    step = 1.0
     led = GPIO.PWM(led_pin, init_frequency)
     led.start(duty_cycle)                            # Start with 0% duty-cycle
     while True:
@@ -77,12 +77,12 @@ def destroy():
 
 if __name__ == '__main__':    # Program entrance
     led_pin = 11             # define ledPin
-    init_frequency = 1000     # 1000Hz
-    default_sleep = 0.01     # sleep time between duty_cycle changes in ms
+    init_frequency = 40     # 50Hz
+    default_sleep = 0.005     # sleep time between duty_cycle changes in ms
 
     # Print total number of arguments
     num_args = len(sys.argv)
-    if num_args > 0:
+    if num_args > 1:
         print('Number of arguments: %d, args list:' %num_args)
         print(sys.argv[1:])
 
