@@ -17,4 +17,4 @@ This repository intends to provide a guide to develop Raspberry Pi projects. The
 - Linux commands examples <http://www.linux-commands-examples.com/>
 - Python tutorial <https://python.swaroopch.com/>
 - Git references: <https://guides.github.com/activities/hello-world/>, <https://happygitwithr.com/>, and <https://try.github.io/>
-- WiringPi: <https://projects.drogon.net/raspberry-pi/>
+- WiringPi: <https://projects.drogon.net/raspberry-pi/>, examples using the different functions of pins <https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/>
