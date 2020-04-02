@@ -120,7 +120,7 @@ class ServoDriver:
         if self.gpio_control is not None:
 
             # Control is angle is within limits
-            if angle > 0:
+            if frequency > 0:
 
                 # Change Frequency (Hz)
                 self.gpio_control.ChangeFrequency(frequency)
